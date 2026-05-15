@@ -6,6 +6,9 @@ from sklearn.linear_model import LinearRegression
 
 # Load dataset
 data = pd.read_csv("student_data.csv")
+# Show dataset
+st.subheader("📊 Student Dataset")
+st.write(data)
 
 # Features and target
 X = data[['study_hours', 'attendance', 'sleep_hours', 'assignments']]
@@ -31,3 +34,13 @@ if st.button("Predict Marks"):
     prediction = model.predict([[study_hours, attendance, sleep_hours, assignments]])
 
     st.success(f"Predicted Marks: {round(prediction[0], 2)}")
+    # Charts Section
+st.subheader("📈 Data Visualization")
+
+# Study Hours vs Marks
+st.write("### Study Hours vs Marks")
+st.line_chart(data[['study_hours', 'marks']])
+
+# Attendance vs Marks
+st.write("### Attendance vs Marks")
+st.bar_chart(data[['attendance', 'marks']])
